@@ -20,6 +20,10 @@
         <p>{{currentBreed.description}}</p>
         <h3 class="ui header">Temperament</h3>
         <p>{{currentBreed.temperament}}</p>
+        <router-link :to="`/gallery/${currentBreed.id}`" class="ui teal  basic button">
+          See Gallery
+        </router-link>
+        <div class="ui divider"></div>
         <a :href="currentBreed.wikipedia_url">More Info</a>
       </div>
     </div>
@@ -66,8 +70,8 @@ export default {
 
 <style scoped>
   .breed-image {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     margin: 0 auto;
   }
 </style>
