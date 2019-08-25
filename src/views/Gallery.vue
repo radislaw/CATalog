@@ -1,10 +1,14 @@
 <template>
   <div>
-    <button class="ui teal basic button " @click="getRandomImages">Refresh</button>
-    <div class="ui divider"></div>
+    <template  v-if="!$route.params.id">
+      <button class="ui teal basic button " @click="getRandomImages">
+        Refresh
+      </button>
+      <div class="ui divider"></div>
+    </template>
     <div class="image-container">
       <LazyImage
-       v-for="image in randomImages"
+       v-for="image in currentImages"
        :lazySrc="image.url"
        :alt="image.name"
         :width="image.width"
@@ -24,13 +28,20 @@ export default {
   name: 'Gallery',
   components: { LazyImage },
   computed: {
-    ...mapState('images', ['randomImages']),
+    ...mapState('images', ['images', 'randomImages']),
+    currentImages() {
+      return this.$route.params.id ? this.images : this.randomImages
+    },
   },
   methods: {
-    ...mapActions('images', ['getRandomImages']),
+    ...mapActions('images', ['getImages', 'getRandomImages']),
   },
   created() {
-    this.getRandomImages();
+    if (this.$route.params.id) {
+      this.getImages(this.$route.params.id);
+    } else {
+      this.getRandomImages();
+    }
   },
 };
 </script>
