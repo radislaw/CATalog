@@ -16,5 +16,9 @@ export default new Router({
       name: 'gallery',
       component: () => import(/* webpackChunkName: "gallery" */ './views/Gallery.vue'),
     },
+    {
+      path: '/gallery/:id',
+      component: () => import(/* webpackChunkName: "gallery" */ './views/Gallery.vue'),
+    },
   ],
 });
