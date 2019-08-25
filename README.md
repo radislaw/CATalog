@@ -1,4 +1,6 @@
-# catalog
+# CATalog
+
+Cat breeds catalog
 
 ## Project setup
 ```
